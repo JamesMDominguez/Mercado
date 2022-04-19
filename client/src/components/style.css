@@ -1,0 +1,54 @@
+#container {
+    display: flex;
+    justify-content: space-evenly; /* Can be changed in the live sample */
+  }
+  
+#container > img {
+    width: 40px;
+    height: 45px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  #container > img:hover {
+    background-color: rgb(206, 206, 206);
+    border-radius: 10px;
+  }
+  #container > button {
+    width: 100px;
+    height: 40px;
+}
+
+.sidebar {
+    position: fixed;
+    width: 25%;
+    height: 100vh;
+    font-size: 0.65em;
+    background-color: #e0dfde;
+    border-style: solid;
+    border-top: none;
+    display: inline-block;
+    top: 68px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+.sidebarItem{
+    margin: 6%;
+}
+.sidebarItem> div{
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.sidebarItem> div:hover{
+    background-color: rgb(206, 206, 206);
+}
+
+.listings{
+    display: flex;
+  }
+
+.image{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
