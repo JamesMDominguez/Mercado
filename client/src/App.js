@@ -15,8 +15,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 const App = () => {
  return (
     <Auth0Provider
-    domain="dev-x8a3sk5w.us.auth0.com"
-    clientId="ew3tglzDXbF8eaQH1UyyVl7R5CstPR1s"
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID} 
     redirectUri={window.location.origin}>
    <div>
      <Navbar/>

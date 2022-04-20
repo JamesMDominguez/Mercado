@@ -24,7 +24,7 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`http://localhost:5000/record/`);
+     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/record/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -44,7 +44,7 @@ export default function RecordList() {
  // This method will delete a record
  useEffect(() => {
     async function getCart() {
-      const response = await fetch(`http://localhost:5000/cart/`);
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/cart/`);
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
