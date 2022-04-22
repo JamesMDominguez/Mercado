@@ -31,7 +31,7 @@ export default function Create() {
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
-   await fetch(`${process.env.REACT_APP_SERVER_URL}/record/add`, {
+   await fetch(`${process.env.REACT_APP_SERVER_URL}record/add`, {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export default function Create() {
  // This following section will display the form that takes the input from the user.
  return (
    <>
-    <aside class="sidebar">
+    <aside className="sidebar">
      <form onSubmit={onSubmit}>
      <div className="form-group">
          <input
@@ -145,7 +145,7 @@ export default function Create() {
          <input
            type="submit"
            value="Create Listing"
-           class="btn btn-outline-dark"
+           className="btn btn-outline-dark"
            style={{"width":"90%","marginLeft":"5%","borderRadius":"15px"}}
          />
      </form>

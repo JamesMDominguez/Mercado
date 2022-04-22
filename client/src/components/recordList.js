@@ -10,7 +10,6 @@ export default function RecordList() {
  const { user,isAuthenticated } = useAuth0();
  const [cart, setCart] = useState([]);
  const [selected, setSelected] = useState("Browse all");
- const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
  const Record = (props) => (
     <div style={{"width":"24%","marginRight":"10px"}} onClick={()=>navigate(`/listing/${props.record._id}`)}>
@@ -24,8 +23,7 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/record/`);
- 
+     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}record/`);
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
        window.alert(message);
@@ -44,7 +42,7 @@ export default function RecordList() {
  // This method will delete a record
  useEffect(() => {
     async function getCart() {
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/cart/`);
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}cart/`);
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -76,7 +74,7 @@ export default function RecordList() {
  function cartList() {
     return cart.map((listing) => {
     if(isAuthenticated){
-    if(user.nickname == listing.cartUser){
+    if(user.nickname === listing.cartUser){
         return (
             <Cart
             record={listing}
@@ -91,7 +89,7 @@ export default function RecordList() {
   function sellingList() {
     return records.map((record) => {
     if(isAuthenticated){
-    if(user.email == record.user){
+    if(user.email === record.user){
         return (
             <Record
             record={record}
@@ -102,9 +100,9 @@ export default function RecordList() {
  // This following section will display the table with the records of individuals.
  return (
    <>
-   <aside class="sidebar">
-   <input type="text" class="form-control" placeholder="🔍 Sreach Mercado" style={{"width":"90%","margin":"5%","borderRadius":"15px"}}/>
-   <div class="sidebarItem">
+   <aside className="sidebar">
+   <input type="text" className="form-control" placeholder="🔍 Sreach Mercado" style={{"width":"90%","margin":"5%","borderRadius":"15px"}}/>
+   <div className="sidebarItem">
        <div onClick={()=>setSelected("Browse all")}>
        <h4>Browse all</h4>
        </div>
@@ -123,7 +121,7 @@ export default function RecordList() {
        <div onClick={()=>setSelected("Selling")}>
        <h4>Selling</h4>
        </div>
-       <button class="btn btn-outline-dark" style={{"width":"100%"}} onClick={()=>{
+       <button className="btn btn-outline-dark" style={{"width":"100%"}} onClick={()=>{
            if(isAuthenticated){
             navigate("/create")
            }else{
@@ -134,14 +132,14 @@ export default function RecordList() {
    </aside>
 
    <div style={{"marginLeft":"27%","marginTop":"6.5%","marginRight":"2%"}}>
-    <h3 style={{ "display":selected=="Browse all"?"flex":"none","flexWrap":"wrap"}}>Today's picks</h3>
-    <div className="listings" style={{"flexWrap":"wrap", "display":selected=="Browse all"?"flex":"none"}}>{recordList()}</div>
+    <h3 style={{ "display":selected==="Browse all"?"flex":"none","flexWrap":"wrap"}}>Today's picks</h3>
+    <div className="listings" style={{"flexWrap":"wrap", "display":selected==="Browse all"?"flex":"none"}}>{recordList()}</div>
 
-    <h3 style={{ "display":selected=="Cart"?"flex":"none","flexWrap":"wrap"}}>Cart</h3>
-   <div className="listings" style={{ "display":selected=="Cart"?"flex":"none","flexWrap":"wrap"}}>{cartList()}</div>
+    <h3 style={{ "display":selected==="Cart"?"flex":"none","flexWrap":"wrap"}}>Cart</h3>
+   <div className="listings" style={{ "display":selected==="Cart"?"flex":"none","flexWrap":"wrap"}}>{cartList()}</div>
 
-    <h3 style={{ "display":selected=="Selling"?"flex":"none","flexWrap":"wrap"}}>Selling</h3>
-    <div className="listings" style={{"flexWrap":"wrap", "display":selected=="Selling"?"flex":"none"}}>{sellingList()}</div>
+    <h3 style={{ "display":selected==="Selling"?"flex":"none","flexWrap":"wrap"}}>Selling</h3>
+    <div className="listings" style={{"flexWrap":"wrap", "display":selected==="Selling"?"flex":"none"}}>{sellingList()}</div>
    </div>
    </>
  );

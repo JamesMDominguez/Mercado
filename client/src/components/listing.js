@@ -13,7 +13,7 @@ export default function RecordList() {
  useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/record/${params.id.toString()}`);
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}record/${params.id.toString()}`);
   
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -43,7 +43,7 @@ export default function RecordList() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...record };
   
-    await fetch(`${process.env.REACT_APP_SERVER_URL}/cart/add`, {
+    await fetch(`${process.env.REACT_APP_SERVER_URL}cart/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,16 +73,16 @@ export default function RecordList() {
  // This following section will display the table with the records of individuals.
  return (
    <>
-   <aside class="sidebar">
-   <input type="text" class="form-control" placeholder="🔍 Sreach Mercado" style={{"width":"90%","margin":"5%","borderRadius":"15px"}}/>
-   <div class="sidebarItem">
+   <aside className="sidebar">
+   <input type="text" className="form-control" placeholder="🔍 Sreach Mercado" style={{"width":"90%","margin":"5%","borderRadius":"15px"}}/>
+   <div className="sidebarItem">
        <h3>Browse all</h3>
        <h3>Cart</h3>
        <h3>Notifications</h3>
        <h3>Inbox</h3>
        <h3>Buying</h3>
        <h3>Selling</h3>
-       <button class="btn btn-outline-dark" style={{"width":"100%"}} onClick={()=>{
+       <button className="btn btn-outline-dark" style={{"width":"100%"}} onClick={()=>{
            if(isAuthenticated){
             navigate("/create")
            }else{
