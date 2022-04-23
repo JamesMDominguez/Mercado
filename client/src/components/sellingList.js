@@ -27,7 +27,7 @@ const SellingList = () => {
       function recordsList() {
         return records.map((listing) => {
         if(isAuthenticated){
-        if(user.user === listing.user){
+        if(user.email === listing.user){
             return (
                 <div style={{"width":"24%","marginRight":"10px"}}>
                 <img src={listing.imgURL} style={{"width":"100%","borderRadius":"10px"}}/>
@@ -35,7 +35,7 @@ const SellingList = () => {
                 <p>{listing.title}</p>
                 <p>{listing.location}</p>
               </div>
-              );
+            );
         }
     }
         });
