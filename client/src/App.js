@@ -7,7 +7,6 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
-import Listing from "./components/listing";
 import Create from "./components/create";
 import { Auth0Provider } from "@auth0/auth0-react";
 
@@ -23,7 +22,6 @@ const App = () => {
      <Routes>
        <Route exact path="/" element={<RecordList />} />
        <Route path="/edit/:id" element={<Edit />} />
-       <Route path="/listing/:id" element={<Listing />} />
        <Route path="/create" element={<Create />} />
      </Routes>
    </div>

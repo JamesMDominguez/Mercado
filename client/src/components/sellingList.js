@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Cart = () => {
-    const [cart, setCart] = useState([]);
+const SellingList = () => {
+    const [records, setRecords] = useState([]);
     const { user,isAuthenticated } = useAuth0();
 
     useEffect(() => {
-        async function getCart() {
-          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}cart/`);
-      
+        async function getRecords() {
+          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}record/`);
           if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.alert(message);
             return;
           }
       
-          const cart = await response.json();
-          setCart(cart);
-    
+          const records = await response.json();
+          setRecords(records);
         }
-        getCart();
+      
+        getRecords();
+      
         return;
-      }, [cart.length]);
+      }, [records.length]);
 
 
-      function cartList() {
-        return cart.map((listing) => {
+      function recordsList() {
+        return records.map((listing) => {
         if(isAuthenticated){
-        if(user.nickname === listing.cartUser){
+        if(user.user === listing.user){
             return (
                 <div style={{"width":"24%","marginRight":"10px"}}>
                 <img src={listing.imgURL} style={{"width":"100%","borderRadius":"10px"}}/>
@@ -42,10 +42,10 @@ const Cart = () => {
     }
   return( 
   <div>
-    <h3>Cart</h3>
-    {cartList()}
+    <h3>Selling</h3>
+    {recordsList()}
   </div>
   )
 };
 
-export default Cart;
+export default SellingList;
