@@ -41,12 +41,13 @@ function recordsList() {
         )})
     }
 
-    
   return( 
-  <div>
-    <h3>Today's picks</h3>
+  <>
+  <h3 style={{"width":"100%"}}>Today's picks</h3>
+  <div style={{"display":"flex"}}>
     {recordsList()}
   </div>
+  </>
   )
 };
 

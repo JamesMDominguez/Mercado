@@ -35,16 +35,17 @@ const SellingList = () => {
                 <p>{listing.title}</p>
                 <p>{listing.location}</p>
               </div>
-            );
-        }
+            )
+        }}})
     }
-        });
-    }
+
   return( 
-  <div>
+  <>
     <h3>Selling</h3>
-    {recordsList()}
-  </div>
+    <div style={{"display":"flex"}}>
+        {recordsList()}
+    </div>
+  </>
   )
 };
 

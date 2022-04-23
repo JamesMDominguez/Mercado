@@ -66,7 +66,10 @@ export default function Listing() {
             <p>{record.description}</p>
             <p>{record.catagory}</p>
             <p>{record.location}</p>
-         <button className="btn btn-outline-dark" onClick={(e)=>{ onSubmit(e)}}>Add to cart</button>
+        <div style={{"display":"flex"}}>
+        <button className="btn btn-outline-dark" style={{"marginRight":"10px"}} onClick={(e)=>{ onSubmit(e); navigate("/")}}>Add to cart</button>
+        <button className="btn btn-outline-dark" onClick={(e)=>{ navigate("/")}}>Message</button>
+        </div>
           </div>
          </div>
     </div>

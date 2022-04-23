@@ -11,7 +11,6 @@ export default function RecordList() {
  const navigate = useNavigate();
  const { user,isAuthenticated } = useAuth0();
  const [selected, setSelected] = useState("Browse all");
- const [listing, setListing] = useState({});
 
 
  // This method fetches the records from the database.
@@ -62,10 +61,7 @@ export default function RecordList() {
        <h4>Notifications</h4>
        </div>
        <div onClick={()=>setSelected("Inbox")}>
-       <h4>Inbox</h4>
-       </div>
-       <div onClick={()=>setSelected("Buying")}>
-        <h4>Buying</h4>
+       <h4>Messages</h4>
        </div>
        <div onClick={()=>setSelected("Selling")}>
        <h4>Selling</h4>
@@ -81,7 +77,7 @@ export default function RecordList() {
    </aside>
 
    <div style={{"marginLeft":"27%","marginTop":"6.5%","marginRight":"2%"}}>
-   <div className="listings">{displayComponents()}</div>
+   {displayComponents()}
    </div>
    </>
  );
