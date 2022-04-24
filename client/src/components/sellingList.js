@@ -25,9 +25,14 @@ const SellingList = () => {
         return;
       }, [records.length]);
 
-    
-
-
+      async function deleteRecord(id) {
+        await fetch(`${process.env.REACT_APP_SERVER_URL}${id}`, {
+          method: "DELETE"
+        });
+      
+        const newRecord = records.filter((el) => el._id !== id);
+        setRecords(newRecord);
+      }
 
     const ListingForm = (props) =>{
         return(
@@ -37,7 +42,11 @@ const SellingList = () => {
         <p>{props.listing.price}</p>
        <div className="form-group">
          <button className="btn btn-outline-dark" style={{"marginLeft":"10px"}} onClick={()=>navigate(`/edit/${props.listing._id}`)}>Edit</button>
-         <button className="btn btn-outline-dark" style={{"marginLeft":"10px"}}>Delete</button>
+         <button className="btn btn-outline-dark" style={{"marginLeft":"10px"}} onClick={()=>{
+            if(window.confirm("Check")){
+               deleteRecord(props.listing._id)
+            }
+           }}>Delete</button>
        </div>
      </>
         )
