@@ -59,7 +59,7 @@ cartRoutes.route("/cart/add").post(function (req, response) {
 });
 
 // This section will help you update a cart by id.
-cartRoutes.route("/update/:id").post(function (req, response) {
+cartRoutes.route("/cart/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
@@ -85,7 +85,7 @@ cartRoutes.route("/update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a cart
-cartRoutes.route("/:id").delete((req, response) => {
+cartRoutes.route("/cart/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect.collection("carts").deleteOne(myquery, function (err, obj) {

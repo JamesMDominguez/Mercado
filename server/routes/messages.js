@@ -40,13 +40,6 @@ messages.route("/record/:id").get(function (req, res) {
 messages.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    imgURL: req.body.imgURL,
-    title: req.body.title,
-    price: req.body.price,
-    description: req.body.description,
-    catagory: req.body.catagory,
-    condition: req.body.condition,
-    location: req.body.location,
     user: req.body.user,
     };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
@@ -61,13 +54,6 @@ messages.route("/update/:id").post(function (req, response) {
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-    imgURL: req.body.imgURL,
-    title: req.body.title,
-    price: req.body.price,
-    description: req.body.description,
-    catagory: req.body.catagory,
-    condition: req.body.condition,
-    location: req.body.location,
     user: req.body.user,
     },
   };

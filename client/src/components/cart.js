@@ -23,17 +23,30 @@ const Cart = () => {
         return;
       }, [cart.length]);
 
-
+      async function deleteRecord(id) {
+        await fetch(`${process.env.REACT_APP_SERVER_URL}cart/${id}`, {
+          method: "DELETE"
+        });
+      
+        const newCart = cart.filter((el) => el._id !== id);
+        setCart(newCart);
+      }
+      
       function cartList() {
         return cart.map((listing) => {
         if(isAuthenticated){
         if(user.nickname === listing.cartUser){
             return (
-                <div style={{"width":"24%","marginRight":"10px"}}>
-                <img src={listing.imgURL} style={{"width":"100%","borderRadius":"10px"}}/>
+                <div style={{"width":"50%","marginRight":"10px","display":"flex"}}>
+                <img src={listing.imgURL} style={{"width":"50%","borderRadius":"10px","marginBottom":"10px"}}/>
+
+                <div style={{"marginLeft":"10px"}}>
                 <p>{listing.price}</p>
                 <p>{listing.title}</p>
                 <p>{listing.location}</p>
+                <button className="btn btn-outline-dark" style={{"marginRight":"10px"}} onClick={()=>deleteRecord(listing._id)}>Remove</button>
+                <button className="btn btn-outline-dark">Message</button>
+                </div>
               </div>
               );
         }
@@ -43,9 +56,7 @@ const Cart = () => {
   return( 
   <>
     <h3>Cart</h3>
-    <div style={{"display":"flex"}}>
     {cartList()}
-    </div>
   </>
   )
 };

@@ -7,34 +7,11 @@ import SellingList from "./sellingList";
 import Listings from "./listings";
 
 export default function RecordList() {
- const [records, setRecords] = useState([]);
  const navigate = useNavigate();
  const { user,isAuthenticated } = useAuth0();
  const [selected, setSelected] = useState("Browse all");
 
-
- // This method fetches the records from the database.
- useEffect(() => {
-   async function getRecords() {
-     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}record/`);
-     if (!response.ok) {
-       const message = `An error occurred: ${response.statusText}`;
-       window.alert(message);
-       return;
-     }
- 
-     const records = await response.json();
-     setRecords(records);
-   }
- 
-   getRecords();
- 
-   return;
- }, [records.length]);
-
-     
-      
-      function displayComponents(){
+function displayComponents(){
           if(selected === "Browse all"){
             return <Listings/>
           }
