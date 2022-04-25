@@ -170,7 +170,9 @@ export default function Edit() {
          />
      </form>
      </aside>
-     <div style={{"marginLeft":"27%","backgroundColor":"#e0dfde","marginTop":"7%","marginRight":"2%","borderRadius":"10px","padding":"10px"}}>
+     <button className="btn btn-outline-dark" style={{"marginLeft":"27%","marginTop":"4%"}} onClick={(e)=>navigate("/")}>Back</button>
+
+     <div style={{"marginLeft":"27%","backgroundColor":"#e0dfde","marginTop":"1%","marginRight":"2%","borderRadius":"10px","padding":"10px"}}>
      <h3>Preview</h3>
      <div style={{"display":"flex"}}>
      <img src={form.imgURL!=""?form.imgURL:"https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg"} style={{"width":"45%","borderRadius":"10px"}}/>

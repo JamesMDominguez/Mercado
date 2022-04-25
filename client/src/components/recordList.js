@@ -34,10 +34,16 @@ function displayComponents(){
        <div onClick={()=>setSelected("Cart")}> 
        <h4>Cart</h4>
        </div>
-       <div onClick={()=>setSelected("Notifications")}>
+       <div onClick={()=>{
+           alert("Feature Unavailable")
+           setSelected("Notifications")
+           }}>
        <h4>Notifications</h4>
        </div>
-       <div onClick={()=>setSelected("Inbox")}>
+       <div onClick={()=>{
+           alert("Feature Unavailable")
+           setSelected("Messages")
+           }}>
        <h4>Messages</h4>
        </div>
        <div onClick={()=>setSelected("Selling")}>

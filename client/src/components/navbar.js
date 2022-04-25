@@ -14,8 +14,7 @@ export default function Navbar() {
         <img style={{"height":"40px","marginLeft":"5px"}} src="https://i.ibb.co/qYw0YzG/Screen-Shot-2022-04-16-at-1-30-23-PM-removebg-preview.png" onClick={()=>navigate("/")}/>
         <div id="container">
         <LoginButton/>
-        <img src="https://www.freeiconspng.com/thumbs/shopping-basket-icon/grocery-basket-icon-3.png" onClick={()=>navigate("/")}/>
-       <button className="btn btn-outline-dark" onClick={()=>{
+       <button className="btn btn-outline-dark" style={{"marginLeft":"10px"}} onClick={()=>{
            if(isAuthenticated){
             navigate("/create")
            }else{

@@ -17,9 +17,7 @@ useEffect(() => {
           const records = await response.json();
           setRecords(records);
         }
-      
         getRecords();
-      
         return;
       }, [records.length]);
 
@@ -37,14 +35,13 @@ function recordsList() {
         return (
             <div style={{"width":"24%","marginRight":"10px"}} onClick={()=>navigate(`/listing/${listing._id}`)}>
                 <Thislisting listing={listing}/>
-            </div>
-        )})
-    }
+            </div> 
+            )})}
 
   return( 
   <>
   <h3 style={{"width":"100%"}}>Today's picks</h3>
-  <div style={{"display":"flex"}}>
+  <div style={{"display":"flex","flexWrap":"wrap"}}>
     {recordsList()}
   </div>
   </>

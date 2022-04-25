@@ -52,11 +52,6 @@ const SellingList = () => {
         )
       }
 
-    function recordFrom(listing){
- 
-        return <ListingForm listing={listing}/>
-      
-    }
     function recordsList() {
         return records.map((listing) => {
         if(isAuthenticated){
@@ -65,7 +60,7 @@ const SellingList = () => {
                 <div style={{"width":"50%","display":"flex"}}>
                 <img src={listing.imgURL} style={{"width":"50%","marginRight":"10px","marginBottom":"10px","borderRadius":"10px"}}/>
                 <div>
-                {recordFrom(listing)}
+                <ListingForm listing={listing}/>
                 </div>
               </div>
             )

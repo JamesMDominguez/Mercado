@@ -45,7 +45,7 @@ const Cart = () => {
                 <p>{listing.title}</p>
                 <p>{listing.location}</p>
                 <button className="btn btn-outline-dark" style={{"marginRight":"10px"}} onClick={()=>deleteRecord(listing._id)}>Remove</button>
-                <button className="btn btn-outline-dark">Message</button>
+                <button className="btn btn-outline-dark" onClick={()=>alert("feature unavailable")}>Message</button>
                 </div>
               </div>
               );
