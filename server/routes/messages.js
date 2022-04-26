@@ -16,8 +16,8 @@ const ObjectId = require("mongodb").ObjectId;
 messages.route("/record").get(function (req, res) {
   let db_connect = dbo.getDb("employees");
   db_connect
-    .collection("records")
-    .find({})
+    .collection("messages")
+    .find(req.query)
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -25,11 +25,11 @@ messages.route("/record").get(function (req, res) {
 });
 
 // This section will help you get a single record by id
-messages.route("/record/:id").get(function (req, res) {
+messages.route("/message/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect
-      .collection("records")
+      .collection("messages")
       .findOne(myquery, function (err, result) {
         if (err) throw err;
         res.json(result);
@@ -37,28 +37,34 @@ messages.route("/record/:id").get(function (req, res) {
 });
 
 // This section will help you create a new record.
-messages.route("/record/add").post(function (req, response) {
+messages.route("/message/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    user: req.body.user,
+    user1: req.body.user1,
+    user2: req.body.user2,
+    message: req.body.message,
+    listing: req.body.listing,
     };
-  db_connect.collection("records").insertOne(myobj, function (err, res) {
+  db_connect.collection("messages").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
 });
 
 // This section will help you update a record by id.
-messages.route("/update/:id").post(function (req, response) {
+messages.route("/message/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-    user: req.body.user,
+    user1: req.body.user1,
+    user2: req.body.user2,
+    message: req.body.message,
+    listing: req.body.listing,
     },
   };
   db_connect
-    .collection("records")
+    .collection("messages")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
       console.log("1 document updated");
@@ -70,7 +76,7 @@ messages.route("/update/:id").post(function (req, response) {
 messages.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
-  db_connect.collection("records").deleteOne(myquery, function (err, obj) {
+  db_connect.collection("messages").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
     response.json(obj);

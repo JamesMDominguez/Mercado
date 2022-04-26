@@ -17,7 +17,7 @@ recordRoutes.route("/record").get(function (req, res) {
   let db_connect = dbo.getDb("employees");
   db_connect
     .collection("records")
-    .find({})
+    .find(req.query)
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);

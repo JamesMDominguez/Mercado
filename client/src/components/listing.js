@@ -8,6 +8,12 @@ export default function Listing() {
  const navigate = useNavigate();
  const [record, setRecord] = useState({});
  const { user,isAuthenticated } = useAuth0();
+ const [message, setMessage] = useState({
+    user1: user.email,
+    user2: "",
+    message: "",
+    listing: {},
+ });
 
  useEffect(() => {
    async function fetchData() {
@@ -34,6 +40,7 @@ export default function Listing() {
  
    return;
  }, [params.id, navigate]);
+
  
  async function onSubmit(e) {
     e.preventDefault();
@@ -54,6 +61,24 @@ export default function Listing() {
     });
   }
  
+  async function onSubmitMessage(e) {
+    e.preventDefault();
+    // When a post request is sent to the create url, we'll add a new record to the database.  
+    await fetch(`${process.env.REACT_APP_SERVER_URL}message/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
+    });
+
+    navigate("/");
+  }
+
  // This following section will display the form that takes input from the user to update the data.
  return (
      <div style={{"marginTop":"80px"}}>
@@ -68,7 +93,11 @@ export default function Listing() {
             <p>{record.location}</p>
         <div style={{"display":"flex"}}>
         <button className="btn btn-outline-dark" style={{"marginRight":"10px"}} onClick={(e)=>{ onSubmit(e); navigate("/")}}>Add to cart</button>
-        <button className="btn btn-outline-dark" onClick={(e)=>{ alert("feature unavailable")}}>Message</button>
+        <button className="btn btn-outline-dark" onClick={(e)=>{
+            message.listing = record;
+            message.user2 = record.user;
+            onSubmitMessage(e)
+            }}>Message</button>
         </div>
           </div>
          </div>

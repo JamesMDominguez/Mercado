@@ -7,7 +7,7 @@ const Cart = () => {
 
     useEffect(() => {
         async function getCart() {
-          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}cart/`);
+          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}cart?cartUser=${user.nickname}`);
       
           if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
@@ -27,19 +27,15 @@ const Cart = () => {
         await fetch(`${process.env.REACT_APP_SERVER_URL}cart/${id}`, {
           method: "DELETE"
         });
-      
         const newCart = cart.filter((el) => el._id !== id);
         setCart(newCart);
       }
       
       function cartList() {
         return cart.map((listing) => {
-        if(isAuthenticated){
-        if(user.nickname === listing.cartUser){
             return (
                 <div style={{"width":"50%","marginRight":"10px","display":"flex"}}>
                 <img src={listing.imgURL} style={{"width":"50%","borderRadius":"10px","marginBottom":"10px"}}/>
-
                 <div style={{"marginLeft":"10px"}}>
                 <p>{listing.price}</p>
                 <p>{listing.title}</p>
@@ -49,8 +45,6 @@ const Cart = () => {
                 </div>
               </div>
               );
-        }
-    }
         });
     }
   return( 

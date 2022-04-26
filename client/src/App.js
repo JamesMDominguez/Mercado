@@ -9,6 +9,7 @@ import RecordList from "./components/recordList";
 import EditListing from "./components/editListing";
 import Create from "./components/create";
 import Listing from "./components/listing";
+import Messages from "./components/messages";
 import { Auth0Provider } from "@auth0/auth0-react";
 
  
@@ -21,10 +22,11 @@ const App = () => {
    <div>
      <Navbar/>
      <Routes>
-       <Route exact path="/" element={<RecordList />} />
+       <Route exact path="/" element={<RecordList/>} />
        <Route path="/edit/:id" element={<EditListing/>} />
-       <Route path="/create" element={<Create />} />
-       <Route path="/listing/:id" element={<Listing />} />
+       <Route path="/create" element={<Create/>} />
+       <Route path="/listing/:id" element={<Listing/>} />
+       <Route path="/messages" element={<Listing/>} />
      </Routes>
    </div>
    </Auth0Provider>

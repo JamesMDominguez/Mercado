@@ -9,7 +9,7 @@ const SellingList = () => {
 
     useEffect(() => {
         async function getRecords() {
-          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}record/`);
+          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}record?user=${user.email}`);
           if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             window.alert(message);
@@ -49,13 +49,10 @@ const SellingList = () => {
            }}>Delete</button>
        </div>
      </>
-        )
-      }
+      )}
 
     function recordsList() {
         return records.map((listing) => {
-        if(isAuthenticated){
-        if(user.email === listing.user){
             return (
                 <div style={{"width":"50%","display":"flex"}}>
                 <img src={listing.imgURL} style={{"width":"50%","marginRight":"10px","marginBottom":"10px","borderRadius":"10px"}}/>
@@ -63,9 +60,7 @@ const SellingList = () => {
                 <ListingForm listing={listing}/>
                 </div>
               </div>
-            )
-        }}})
-    }
+            )})}
 
   return( 
   <>
