@@ -29,7 +29,6 @@ const MessageBox = (props) => {
     navigate("/messages");
   }
   return (
-    <div id="overlay">
       <div
         id="text"
         onClick={(e) => {
@@ -55,7 +54,6 @@ const MessageBox = (props) => {
           Send
         </button>
       </div>
-    </div>
   );
 };
 

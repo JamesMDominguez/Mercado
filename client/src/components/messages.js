@@ -121,11 +121,16 @@ export default function Messages() {
           className="btn btn-outline-dark"
           style={{ borderRadius: "15px", marginLeft: "10px" }}
           onClick={(e) => {
-            message.user1 = user.email;
-            message.user2 = selectedMessage;
-            message.message = newMessage;
-            onSubmitMessage(e)
-            setNewMessage("")
+          if(selectedMessage === "Select a message"){
+            alert("select message")
+          }else{
+              message.user1 = user.email;
+              message.user2 = selectedMessage;
+              message.message = newMessage;
+              onSubmitMessage(e)
+              setNewMessage("")
+          }
+
           }}
         >
           Send
