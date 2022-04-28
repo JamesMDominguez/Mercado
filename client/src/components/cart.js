@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useParams, useNavigate } from "react-router";
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
     const { user,isAuthenticated } = useAuth0();
+    const [message, setMessage] = useState({
+        user1: user.email,
+        user2: "",
+        message: "",
+        listing: {},
+     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function getCart() {
@@ -23,6 +31,24 @@ const Cart = () => {
         return;
       }, [cart.length]);
 
+      async function onSubmitMessage(e) {
+        e.preventDefault();
+        // When a post request is sent to the create url, we'll add a new record to the database.  
+        await fetch(`${process.env.REACT_APP_SERVER_URL}message/add`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(message),
+        })
+        .catch(error => {
+          window.alert(error);
+          return;
+        });
+    
+        navigate("/message");
+      }
+
       async function deleteRecord(id) {
         await fetch(`${process.env.REACT_APP_SERVER_URL}cart/${id}`, {
           method: "DELETE"
@@ -34,14 +60,18 @@ const Cart = () => {
       function cartList() {
         return cart.map((listing) => {
             return (
-                <div style={{"width":"50%","marginRight":"10px","display":"flex"}}>
+                <div style={{"width":"50%","marginRight":"10px","display":"flex"}} key={listing._id}>
                 <img src={listing.imgURL} style={{"width":"50%","borderRadius":"10px","marginBottom":"10px"}}/>
                 <div style={{"marginLeft":"10px"}}>
                 <p>{listing.price}</p>
                 <p>{listing.title}</p>
                 <p>{listing.location}</p>
                 <button className="btn btn-outline-dark" style={{"marginRight":"10px"}} onClick={()=>deleteRecord(listing._id)}>Remove</button>
-                <button className="btn btn-outline-dark" onClick={()=>alert("feature unavailable")}>Message</button>
+                <button className="btn btn-outline-dark" onClick={(e)=>{
+                    message.listing = listing;
+                    message.user2 = listing.user;
+                    onSubmitMessage(e)
+                    }}>Message</button>
                 </div>
               </div>
               );

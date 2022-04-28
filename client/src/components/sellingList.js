@@ -54,7 +54,7 @@ const SellingList = () => {
     function recordsList() {
         return records.map((listing) => {
             return (
-                <div style={{"width":"50%","display":"flex"}}>
+                <div style={{"width":"50%","display":"flex"}} key={listing._id}>
                 <img src={listing.imgURL} style={{"width":"50%","marginRight":"10px","marginBottom":"10px","borderRadius":"10px"}}/>
                 <div>
                 <ListingForm listing={listing}/>

@@ -41,8 +41,7 @@ function displayComponents(){
        <h4>Notifications</h4>
        </div>
        <div onClick={()=>{
-           alert("Feature Unavailable")
-           setSelected("Messages")
+           navigate("./messages")
            }}>
        <h4>Messages</h4>
        </div>
@@ -53,7 +52,7 @@ function displayComponents(){
            if(isAuthenticated){
             navigate("/create")
            }else{
-               alert("Login to post listing")
+            alert("Login to post listing")
            }
            }}>+ Create new listing</button>
    </div>

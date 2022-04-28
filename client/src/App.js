@@ -26,7 +26,7 @@ const App = () => {
        <Route path="/edit/:id" element={<EditListing/>} />
        <Route path="/create" element={<Create/>} />
        <Route path="/listing/:id" element={<Listing/>} />
-       <Route path="/messages" element={<Listing/>} />
+       <Route path="/messages" element={<Messages/>} />
      </Routes>
    </div>
    </Auth0Provider>

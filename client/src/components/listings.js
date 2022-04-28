@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Listings = () => {
     const [records, setRecords] = useState([]);
     const navigate = useNavigate();
+    const { user,isAuthenticated } = useAuth0();
 
 useEffect(() => {
         async function getRecords() {
@@ -33,7 +35,13 @@ const Thislisting = (props) => (
 function recordsList() {
     return records.map((listing) => {
         return (
-            <div style={{"width":"24%","marginRight":"10px"}} onClick={()=>navigate(`/listing/${listing._id}`)}>
+            <div style={{"width":"24%","marginRight":"10px"}} key={listing._id} onClick={()=>{
+                if(isAuthenticated){
+                    navigate(`/listing/${listing._id}`)
+                }else{
+                    alert("Login to view listing")
+                }
+                }}>
                 <Thislisting listing={listing}/>
             </div> 
             )})}

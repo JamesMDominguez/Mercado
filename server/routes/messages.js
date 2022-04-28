@@ -13,7 +13,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 // This section will help you get a list of all the records.
-messages.route("/record").get(function (req, res) {
+messages.route("/message").get(function (req, res) {
   let db_connect = dbo.getDb("employees");
   db_connect
     .collection("messages")
