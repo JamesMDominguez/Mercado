@@ -35,12 +35,6 @@ function displayComponents(){
        <h4>Cart</h4>
        </div>
        <div onClick={()=>{
-           alert("Feature Unavailable")
-           setSelected("Notifications")
-           }}>
-       <h4>Notifications</h4>
-       </div>
-       <div onClick={()=>{
            navigate("./messages")
            }}>
        <h4>Messages</h4>
