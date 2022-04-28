@@ -8,7 +8,14 @@ export default function Messages() {
   const [records, setRecords] = useState([]);
   const [userList, setUserList] = useState([]);
   const { user } = useAuth0();
-  const [selectedMessage, setSelectedMessage] = useState("");
+  const [selectedMessage, setSelectedMessage] = useState("Select a message");
+  const [newMessage, setNewMessage] = useState("");
+  const [message, setMessage] = useState({
+    user1: "",
+    user2: "",
+    message: "",
+    listing: "",
+  });
 
   useEffect(() => {
     async function getRecords() {
@@ -35,24 +42,32 @@ export default function Messages() {
     }
     getRecords();
     return;
-  }, [records.length]);
+  }, [records]);
+
+  async function onSubmitMessage(e) {
+    e.preventDefault();
+    // When a post request is sent to the create url, we'll add a new record to the database.
+    await fetch(`${process.env.REACT_APP_SERVER_URL}message/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+  }
 
   function showMessages() {
     return userList.map((record) => {
         let message = record.split(",")
-    if(message[0]===user.email){
-      return (
-        <div key={record} onClick={() => setSelectedMessage(message[1])}>
-          <p>{message[1]}</p>
-        </div>
-      );
-    }else{
         return(
             <div key={record} onClick={() => setSelectedMessage(message[0])}>
             <p>{message[0]}</p>
           </div>
         )
-    }
+    
     });
   }
 
@@ -93,12 +108,29 @@ export default function Messages() {
       <div style={{ marginLeft: "27%", marginTop: "6.5%", marginRight: "2%" }}>
         <h1>{selectedMessage}</h1>
         {showSelectedMessages()}
-        <input
+        <div style={{display:"flex"}}>
+        <textarea
           type="text"
-          className="form-control"
           placeholder="Message"
-          style={{ width: "100%", borderRadius: "15px" }}
+          className="form-control"
+          style={{ borderRadius: "15px" }}
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
         />
+        <button
+          className="btn btn-outline-dark"
+          style={{ borderRadius: "15px", marginLeft: "10px" }}
+          onClick={(e) => {
+            message.user1 = user.email;
+            message.user2 = selectedMessage;
+            message.message = newMessage;
+            onSubmitMessage(e)
+            setNewMessage("")
+          }}
+        >
+          Send
+        </button>
+        </div>
       </div>
     </div>
   );
