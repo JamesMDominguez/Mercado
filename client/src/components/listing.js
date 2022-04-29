@@ -82,6 +82,7 @@ export default function Listing() {
           style={{ width: "75%", borderRadius: "10px", marginLeft: "10px" }}
         />
         <div style={{ marginLeft: "20px" }}>
+          <p>{record.user}</p>
           <h3>{record.title}</h3>
           <p>{record.price}</p>
           <p>{record.description}</p>

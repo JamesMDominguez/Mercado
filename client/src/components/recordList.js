@@ -10,6 +10,7 @@ export default function RecordList() {
  const navigate = useNavigate();
  const { user,isAuthenticated } = useAuth0();
  const [selected, setSelected] = useState("Browse all");
+ const [displaySearch, setDisplaySearch] = useState("none");
 
 function displayComponents(){
           if(selected === "Browse all"){
@@ -26,7 +27,6 @@ function displayComponents(){
  return (
    <>
    <aside className="sidebar">
-   <input type="text" className="form-control" placeholder="🔍 Sreach Mercado" style={{"width":"90%","margin":"5%","borderRadius":"15px"}}/>
    <div className="sidebarItem">
        <div onClick={()=>setSelected("Browse all")}>
        <h4>Browse all</h4>
@@ -52,7 +52,7 @@ function displayComponents(){
    </div>
    </aside>
 
-   <div style={{"marginLeft":"27%","marginTop":"6.5%","marginRight":"2%"}}>
+   <div style={{"marginLeft":"27%","marginTop":"6.5%","marginRight":"2%"}} onclick={()=>{setDisplaySearch("none")}}>
    {displayComponents()}
    </div>
    </>

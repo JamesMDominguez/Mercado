@@ -80,3 +80,12 @@
   border-radius: 10px;
 }
 
+.SearchDropdown{
+  padding:10px;
+}
+.SearchDropdown>div{
+  border-radius: 5px;
+}
+.SearchDropdown div:hover{
+  background-color: rgb(206, 206, 206);
+}

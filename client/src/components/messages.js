@@ -88,12 +88,7 @@ export default function Messages() {
   return (
     <div style={{ marginTop: "80px" }}>
       <aside className="sidebar">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="🔍 Sreach Messages"
-          style={{ width: "90%", margin: "5%", borderRadius: "15px" }}
-        />
+        <h2 style={{marginLeft:"30px"}}>Messages</h2>
         <div className="sidebarItem">
           {showMessages()}
           <button
